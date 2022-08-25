@@ -1,0 +1,11 @@
+{
+    "/js/react/index.js": "/js/react/index.js",
+    "/js/react/auth/login.js": "/js/react/auth/login.js",
+    "/js/react/poli.js": "/js/react/poli.js",
+    "/js/react/dokter.js": "/js/react/dokter.js",
+    "/js/react/antrian.js": "/js/react/antrian.js",
+    "/js/react/antrian/screen.js": "/js/react/antrian/screen.js",
+    "/js/react/antrian/input.js": "/js/react/antrian/input.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css"
+}
