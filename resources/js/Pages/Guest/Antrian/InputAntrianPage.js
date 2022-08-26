@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import { Toaster } from 'react-hot-toast';
 
 import {getPoli,submitAntrian} from "../../../Services/GuestService";
-import {showError} from "../../../Components/Toaster";
+import {showError, showSuccess} from "../../../Components/Toaster";
 
 class InputAntrianPage extends React.Component{
     constructor(props) {
@@ -12,6 +13,7 @@ class InputAntrianPage extends React.Component{
             loading : true, show_doctor : false,
         };
         this.showDoctor = this.showDoctor.bind(this);
+        this.submitAntri = this.submitAntri.bind(this);
     }
     componentDidMount(){
         this.loadPoli();
@@ -21,6 +23,25 @@ class InputAntrianPage extends React.Component{
         if (item !== null) {
             this.setState({current_poli:item,doctor:item.meta.doctors});
         }
+    }
+    async submitAntri(item) {
+        this.setState({loading:true});
+        try {
+            const formData = new FormData();
+            formData.append('dokter', item.value);
+            formData.append('poli', this.state.current_poli.value);
+            let response = await submitAntrian(formData);
+            if (response.data.params === null) {
+                showError(response.data.message);
+            } else {
+                this.setState({current_poli:null,doctor:[],show_doctor:false});
+                showSuccess(`Antrian anda adalah nomor ${response.data.params.meta.poli.meta.code}${String(response.data.params.meta.numbers.poli).padStart(3,'0')}` )
+            }
+        } catch (e) {
+            console.log(e);
+            showError(e.response.data.message);
+        }
+        this.setState({loading:false});
     }
     async loadPoli(){
         this.setState({loading:true});
@@ -39,6 +60,7 @@ class InputAntrianPage extends React.Component{
     render() {
         return (
             <>
+                <Toaster position="top-center"/>
                 <div className="container" style={{marginTop:'50px',marginBottom:'50px'}}>
                     <div className="card">
                         <div className="card-header bg-primary">
@@ -70,7 +92,7 @@ class InputAntrianPage extends React.Component{
                                         :
                                         this.state.doctor.map((item,index)=>
                                             <div key={index} className="col-md-4">
-                                                <div className="card">
+                                                <div className="card" onClick={()=>this.submitAntri(item)}>
                                                     <div className="card-body">
                                                         <div style={{weight:'bold',textAlign:'center',fontSize:'20px'}}>
                                                             {item.label}

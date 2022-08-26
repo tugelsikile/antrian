@@ -6,10 +6,21 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthRepository
 {
+    public function logout(Request $request) {
+        try {
+            //dd(auth()->user()->id);
+            $d = DB::table('oauth_access_tokens')->where('user_id', auth()->user()->id)->delete();
+            auth()->logout();
+            return true;
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage(),500);
+        }
+    }
     public function me(){
         try {
             $user = auth()->guard('api')->user();

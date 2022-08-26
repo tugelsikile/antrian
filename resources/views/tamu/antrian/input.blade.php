@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('title', 'Antrian ' . config('app.name'))
+
 @section('contents')
     <div id="antrian-input"></div>
 @endsection

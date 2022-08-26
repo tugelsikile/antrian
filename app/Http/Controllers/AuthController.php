@@ -15,6 +15,14 @@ class AuthController extends Controller
         $this->validation = new AuthValidation();
         $this->repository = new AuthRepository();
     }
+    public function logout(Request $request) {
+        try {
+            $params = $this->repository->logout($request);
+            return redirect()->to('/login');
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage(),500);
+        }
+    }
     public function login(Request $request) {
         try {
             $valid = $this->validation->login($request);

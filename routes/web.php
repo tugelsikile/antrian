@@ -17,6 +17,7 @@ Route::get('/', function () { return view('welcome'); });
 Route::get('/login', function (){ return view('auth.login'); })->name('login');
 Route::post('/auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::group(['middleware' => 'auth'], function (){
+    Route::any('/logout', [\App\Http\Controllers\AuthController::class,'logout']);
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'index']);
     Route::get('/poli', function (){ return view('poli'); });
     Route::get('/dokter', function (){ return view('dokter'); });

@@ -15,6 +15,24 @@ class AntrianController extends Controller
         $this->repository = new AntrianRepository();
         $this->validation = new AntrianValidation();
     }
+    public function currentAntrian(Request $request) {
+        try {
+            $valid = $this->validation->currentAntrian($request);
+            $params = $this->repository->currentAntrian($valid);
+            return responseFormat(200,'ok', $params);
+        } catch (\Exception $exception) {
+            return responseFormat($exception->getCode(), $exception->getMessage());
+        }
+    }
+    public function submitAntrian(Request $request) {
+        try {
+            $valid = $this->validation->submitAntrian($request);
+            $params = $this->repository->submitAntrian($valid);
+            return responseFormat(200,'ok', $params);
+        } catch (\Exception $exception) {
+            return responseFormat($exception->getCode(), $exception->getMessage());
+        }
+    }
     public function call(Request $request) {
         try {
             $valid = $this->validation->call($request);

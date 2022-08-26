@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'tamu'], function (){
     Route::any('/poli', [\App\Http\Controllers\PoliController::class, 'tamuPoli']);
     Route::any('/submit-antrian', [\App\Http\Controllers\AntrianController::class, 'submitAntrian']);
+    Route::any('/current-antrian', [\App\Http\Controllers\AntrianController::class, 'currentAntrian']);
 });
 Route::group(['middleware' => 'auth:api'], function (){
     Route::group(['prefix' => 'auth'], function (){

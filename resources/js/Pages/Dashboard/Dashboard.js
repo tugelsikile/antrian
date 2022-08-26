@@ -23,6 +23,7 @@ class Dashboard extends React.Component{
         };
         this.loadAntrian = this.loadAntrian.bind(this);
         this.callAntrian = this.callAntrian.bind(this);
+        this.callNextAntrian = this.callNextAntrian.bind(this);
     }
     componentDidMount() {
         this.loadMe();
@@ -83,6 +84,7 @@ class Dashboard extends React.Component{
                 showError(response.data.message);
             } else {
                 this.setState({antrian:response.data.params});
+                this.renderCurrentAntrian();
             }
         } catch (e) {
             showError(e.response.data.message);
@@ -90,6 +92,24 @@ class Dashboard extends React.Component{
         loadings.page = false; this.setState({loadings});
         if (targetAntrian !== null) {
             this.renderCurrentAntrian(targetAntrian);
+        }
+    }
+    callNextAntrian(){
+        let current_antrian = this.state.current_antrian;
+        if (current_antrian !== null) {
+            let searchRegexCode = /^[a-zA-Z]+/g;
+            let searchRegexNum = /\d+/g;
+            let currentNum = parseInt(current_antrian.replace(searchRegexCode,''));
+            let currentCode = current_antrian.replace(searchRegexNum,'');
+            let currentIndex = this.state.antrian.findIndex((a) => a.meta.numbers.poli === currentNum && a.meta.poli.meta.code === currentCode);
+            if (currentIndex >= 0) {
+                let nextIndex = currentIndex + 1;
+                if (typeof this.state.antrian[nextIndex] !== 'undefined'){
+                    this.callAntrian(this.state.antrian[nextIndex]);
+                } else {
+                    showError('Tidak ada antrian selanjutnya');
+                }
+            }
         }
     }
     async callAntrian(data){
@@ -117,10 +137,8 @@ class Dashboard extends React.Component{
                 lastAntrian = target;
             } else  {
                 this.state.antrian.map((item,index)=>{
-                    if (lastAntrian === null) {
-                        if (item.meta.call !== null) {
-                            lastAntrian = item;
-                        }
+                    if (item.meta.call !== null) {
+                        lastAntrian = item;
                     }
                 });
             }
@@ -218,6 +236,11 @@ class Dashboard extends React.Component{
                                             }
                                         </div>
                                     </div>
+                                    {this.state.current_poli !== null &&
+                                        <button onClick={this.callNextAntrian} className="btn btn-warning btn-block">
+                                            <i className="fas fa-bullhorn"/> PANGGIL ANTRIAN SELANJUTNYA
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </div>

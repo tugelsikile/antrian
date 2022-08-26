@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
     ],
 
     /*
@@ -230,6 +232,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
     ],
+
+    'PRINTER_IP' => env('MIX_PRINTER_IP',null),
+    'PRINTER_NAME' => env('MIX_PRINTER_NAME',null)
 
 ];

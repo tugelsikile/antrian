@@ -22,8 +22,9 @@ class TopNavBar extends React.Component{
                                             <img src={window.origin + '/adminmart/assets/images/logo-icon.png'} alt="homepage" className="light-logo"/>
                                         </b>
                                         <span className="logo-text">
-                                    <img src={window.origin + '/adminmart/assets/images/logo-text.png'} alt="homepage" className="dark-logo"/>
-                                    <img src={window.origin + '/adminmart/assets/images/logo-light-text.png'} className="light-logo" alt="homepage"/>
+                                    {/*<img src={window.origin + '/adminmart/assets/images/logo-text.png'} alt="homepage" className="dark-logo"/>*/}
+                                    <span>APLIKASI ANTRIAN</span>
+                                    {/*<img src={window.origin + '/adminmart/assets/images/logo-light-text.png'} className="light-logo" alt="homepage"/>*/}
                                 </span>
                                     </a>
                                 </div>
@@ -52,25 +53,7 @@ class TopNavBar extends React.Component{
                                     </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                            <a className="dropdown-item" href="#">
-                                                <i data-feather="user" className="svg-icon mr-2 ml-1"/>
-                                                My Profile
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <i data-feather="credit-card" className="svg-icon mr-2 ml-1"/>
-                                                My Balance
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <i data-feather="mail" className="svg-icon mr-2 ml-1"/>
-                                                Inbox
-                                            </a>
-                                            <div className="dropdown-divider"/>
-                                            <a className="dropdown-item" href="#">
-                                                <i data-feather="settings" className="svg-icon mr-2 ml-1"/>
-                                                Account Setting
-                                            </a>
-                                            <div className="dropdown-divider"/>
-                                            <a className="dropdown-item" href="#">
+                                            <a className="dropdown-item" href={window.origin + '/logout'}>
                                                 <i data-feather="power" className="svg-icon mr-2 ml-1"/>
                                                 Logout
                                             </a>
