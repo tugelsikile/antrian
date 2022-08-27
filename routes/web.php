@@ -22,6 +22,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/poli', function (){ return view('poli'); });
     Route::get('/dokter', function (){ return view('dokter'); });
     Route::get('/antrian', function (){ return view('antrian'); });
+    Route::group(['prefix' => 'setting'], function (){
+        Route::get('/aplikasi', function (){ return view('setting.aplikasi'); });
+        Route::get('/printer', function (){ return view('setting.printer'); });
+    });
 });
 Route::group(['prefix' => 'tamu'], function (){
     Route::group(['prefix' => 'antrian'], function (){

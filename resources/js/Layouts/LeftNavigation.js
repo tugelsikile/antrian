@@ -60,6 +60,20 @@ class LeftNavigation extends React.Component{
                                         </li>
                                     </ul>
                                 </li>
+                                <li className="list-divider"/>
+                                <li className="nav-small-cap"><span className="hide-menu">Settings</span></li>
+                                <li className="sidebar-item">
+                                    <a className="sidebar-link" href={window.origin + '/setting/aplikasi'} aria-expanded="false">
+                                        <i data-feather="file-text" className="feather-icon"/>
+                                        <span className="hide-menu">APLIKASI</span>
+                                    </a>
+                                </li>
+                                <li className="sidebar-item">
+                                    <a className="sidebar-link" href={window.origin + '/setting/printer'} aria-expanded="false">
+                                        <i data-feather="file-text" className="feather-icon"/>
+                                        <span className="hide-menu">PRINTER</span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </nav>

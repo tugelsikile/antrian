@@ -6,6 +6,8 @@
     "/js/react/antrian.js": "/js/react/antrian.js",
     "/js/react/antrian/screen.js": "/js/react/antrian/screen.js",
     "/js/react/antrian/input.js": "/js/react/antrian/input.js",
+    "/js/react/setting/aplikasi.js": "/js/react/setting/aplikasi.js",
+    "/js/react/setting/printer.js": "/js/react/setting/printer.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }

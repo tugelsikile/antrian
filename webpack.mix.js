@@ -18,6 +18,8 @@ mix .js('resources/js/src/index.js', 'public/js/react')
     .js('resources/js/src/antrian.js', 'public/js/react')
     .js('resources/js/src/antrian/screen.js', 'public/js/react/antrian')
     .js('resources/js/src/antrian/input.js', 'public/js/react/antrian')
+    .js('resources/js/src/setting/aplikasi.js', 'public/js/react/setting')
+    .js('resources/js/src/setting/printer.js', 'public/js/react/setting')
     .js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //

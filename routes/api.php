@@ -36,4 +36,8 @@ Route::group(['middleware' => 'auth:api'], function (){
         Route::any('/', [\App\Http\Controllers\AntrianController::class, 'crud']);
         Route::any('/call', [\App\Http\Controllers\AntrianController::class, 'call']);
     });
+    Route::group(['prefix' => 'setting'], function (){
+        Route::any('/aplikasi', [\App\Http\Controllers\SettingController::class, 'settingAplikasi']);
+        Route::any('/printer', [\App\Http\Controllers\SettingController::class, 'settingPrinter']);
+    });
 });
